@@ -1,0 +1,229 @@
+# SubSyncForge 自定义节点配置
+# 此文件用于配置订阅源和输出格式
+
+# 订阅源配置 - 所有订阅将被合并
+subscriptions:
+  # 订阅源列表
+
+  - name: "jjgy"
+    url: "https://zh.jikun.fun/share/col/%E6%B1%9F%E6%B1%9F%E5%85%AC%E7%9B%8A?token=1yGRuU-x6r_zEz28cE_pE"
+    enabled: true 
+
+  - name: "loc"
+    url: "https://kkb.9901158.xyz/loc.yaml"
+    enabled: true
+  
+  - name: "alalbb"
+    url: "https://c.alalbb.top/clash"
+    enabled: true
+  
+  - name: "zu"
+    url: "https://hssq.cc/5dccpz"
+    enabled: true
+  
+  - name: "ss"
+    url: "https://mxlsub.me/newfull"
+    enabled: true
+
+  - name: "pianyi"
+    url: "https://pianyi.sub.sub.subsub123456789.com/answer/land?token=d427a3103269fd0778efdff19d087d12"
+    enabled: true
+
+  - name: "edgesub"
+    url: "https://edgesub.trafficmanager.net/edgesubs/client/?token=118faa3c666649006a0f0becca75f3c5"
+    enabled: true
+
+  - name: "miaopu"
+    url: "https://sub.miaopu.cf/lsub/SWl6knyYIxEPTLmH?clash=1&extend=1"
+    enabled: true
+
+  - name: "hxapi"
+    url: "https://api-hx.02000.net/api/v1/client/subscribe?token=647da51d982c8c972577c18208d94e59"
+    enabled: true
+
+  - name: "xship"
+    url: "https://xship.top/v1/subscribe?starlink=free"
+    enabled: true
+    
+# 输出配置
+output:
+  # 是否将节点去重
+  deduplication: true
+  
+  # 输出目录
+  dir: "output"
+  
+  # 数据存储目录
+  data_dir: "data"
+  
+  # 生成的配置文件
+  configs:
+    # Mihomo (Clash Meta) 配置
+    - name: "mihomo"
+      template: "templates/mihomo.yaml"
+      path: "mihomo.yaml"
+      enabled: true
+    
+    # Surge 配置
+    - name: "surge"
+      template: "templates/surge.conf"
+      path: "surge.conf"
+      enabled: true
+    
+    # Sing-box 配置
+    - name: "singbox"
+      template: "templates/singbox.json"
+      path: "singbox.json"
+      enabled: true
+    
+    # V2Ray 配置 (选择第一个节点作为默认)
+    - name: "v2ray"
+      template: "templates/v2ray.json"
+      path: "v2ray.json"
+      enabled: true
+      options:
+        use_first_node: true
+        
+    # 香港节点列表
+    - name: "hk_nodes"
+      template: "templates/txt_list.txt"
+      path: "hk.txt"
+      enabled: true
+      options:
+        filter_by_region: ["香港", "HK", "Hong Kong"]
+        
+    # 美国节点列表
+    - name: "us_nodes"
+      template: "templates/txt_list.txt"
+      path: "us.txt"
+      enabled: true
+      options:
+        filter_by_region: ["美国", "US", "United States"]
+        
+    # 日本节点列表
+    - name: "jp_nodes"
+      template: "templates/txt_list.txt"
+      path: "jp.txt"
+      enabled: true
+      options:
+        filter_by_region: ["日本", "JP", "Japan"]
+        
+    # 新加坡节点列表
+    - name: "sg_nodes"
+      template: "templates/txt_list.txt"
+      path: "sg.txt"
+      enabled: true
+      options:
+        filter_by_region: ["新加坡", "SG", "Singapore"]
+        
+    # OpenAI 可用节点列表
+    - name: "openai_nodes"
+      template: "templates/txt_list.txt"
+      path: "openai.txt"
+      enabled: true
+      options:
+        filter_by_service: ["OpenAI"]
+        
+    # Disney+ 可用节点列表
+    - name: "disney_nodes"
+      template: "templates/txt_list.txt"
+      path: "disney.txt"
+      enabled: true
+      options:
+        filter_by_service: ["Disney", "Disney+"]
+        
+    # Netflix 可用节点列表
+    - name: "netflix_nodes"
+      template: "templates/txt_list.txt"
+      path: "netflix.txt"
+      enabled: true
+      options:
+        filter_by_service: ["Netflix"]
+
+    # 台湾节点列表
+    - name: "tw_nodes"
+      template: "templates/txt_list.txt"
+      path: "tw.txt"
+      enabled: true
+      options:
+        filter_by_region: ["台湾", "TW", "Taiwan"]
+
+    # 其他地区节点列表 (尝试使用 exclude_regions)
+    - name: "other_nodes"
+      template: "templates/txt_list.txt"
+      path: "others.txt"
+      enabled: true
+      options:
+        exclude_regions: ["香港", "HK", "Hong Kong", "美国", "US", "United States", "日本", "JP", "Japan", "新加坡", "SG", "Singapore", "台湾", "TW", "Taiwan"]
+
+# 测试配置
+testing:
+  # 是否启用节点测试
+  enabled: true
+  
+  # 测试并发数（同时测试多少个节点）
+  concurrency: 5
+  
+  # 测试超时时间（毫秒）
+  timeout: 5000
+  
+  # 测试URL
+  test_url: "http://latency-test.skk.moe/endpoint"
+  
+  # 是否只保留测试成功的节点
+  filter_invalid: true
+  
+  # 按延迟排序
+  sort_by_latency: true
+  
+  # 保留延迟低于此值的节点（毫秒，0表示不限制）
+  max_latency: 2000
+  
+  # 保留最大节点数量（0表示不限制）
+  max_nodes: 0
+  
+  # 是否验证并更正节点地区信息
+  verify_location: true
+  
+  # IP地址定位相关配置
+  ip_location:
+    # 定位服务API URL (使用{ip}作为占位符)
+    api_url: "https://ipinfo.io/{ip}/json"
+    # API密钥 (可选)
+    api_key: ""
+    # 缓存时间(毫秒), 默认7天
+    cache_time: 604800000
+
+# 高级设置
+advanced:
+  # 缓存过期时间（秒）
+  cache_ttl: 3600
+  
+  # 日志级别: debug, info, warn, error
+  log_level: "info"
+  
+  # 使用代理获取订阅内容
+  proxy_for_subscription: false
+  
+  # 节点排序
+  sort_nodes: true
+  
+  # 定时同步设置（分钟）
+  sync_interval: 360
+
+# 计划任务
+schedule:
+  # 是否启用计划任务
+  enabled: true
+  
+  # 同步订阅任务 - 每6小时执行一次
+  sync_subscription:
+    cron: "0 */12 * * *"  # 每12小时执行一次 (0分, 每12小时, 每天, 每月, 每周)
+    enabled: true
+    command: "npm run sync"
+    
+  # 清理缓存任务 - 每周执行一次
+  clean_cache:
+    cron: "0 0 * * 0"  # 每周日凌晨执行一次 (0分, 0时, 每天, 每月, 周日)
+    enabled: true
+    command: "node src/scripts/clean-cache.js"
